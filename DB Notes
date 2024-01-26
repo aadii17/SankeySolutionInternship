@@ -1,0 +1,165 @@
+
+### Relational Databases (SQL):
+
+1. **Relational Database Management System (RDBMS):**
+   - Examples: MySQL, PostgreSQL, Oracle, SQL Server.
+   - Structure: Organized into tables with rows and columns.
+   - Schema: Predefined, requires a fixed schema.
+
+2. **SQL (Structured Query Language):**
+   - Standard language for interacting with relational databases.
+   - Used for querying, updating, and managing relational databases.
+
+3. **Cardinality:**
+   - Describes the relationship between tables.
+   - Types: One-to-One, One-to-Many, Many-to-Many.
+
+4. **Normalization:**
+   - Process of organizing data to minimize redundancy.
+   - Normal Forms: 1NF, 2NF, 3NF, BCNF, etc.
+
+5. **Schema Design:**
+   - Defines the structure of the database.
+   - Includes tables, fields, relationships, and constraints.
+
+6. **Indexing:**
+   - Improves query performance by creating indexes on columns.
+   - Types: Single-column index, Composite index.
+
+7. **Aggregate Functions:**
+   - Functions that operate on a set of values and return a single value.
+   - Examples: COUNT, SUM, AVG, MIN, MAX.
+
+8. **Views:**
+   - Virtual tables created by a query.
+   - Simplify complex queries or hide data complexity.
+
+9. **Stored Procedures:**
+   - Precompiled set of one or more SQL statements.
+   - Stored and executed on the database server.
+   - Can accept parameters and return values.
+
+### Non-Relational Databases (NoSQL):
+
+1. **NoSQL Database:**
+   - Examples: MongoDB, Cassandra, Redis.
+   - Structure: Document-oriented, key-value pairs, wide-column stores, graph databases.
+   - Schema: Dynamic, allows flexible data models.
+
+2. **NoSQL vs. SQL:**
+   - NoSQL databases are schema-less and more flexible.
+   - Suitable for handling large amounts of unstructured or semi-structured data.
+
+3. **CAP Theorem:**
+   - Consistency, Availability, Partition Tolerance.
+   - NoSQL databases are designed based on different trade-offs.
+
+4. **BASE:**
+   - Basically Available, Soft state, Eventually consistent.
+   - Contrast to the ACID properties of relational databases.
+
+5. **Sharding:**
+   - Technique used to distribute data across multiple servers.
+   - Improves scalability for handling large amounts of data.
+
+6. **Document-Oriented Databases:**
+   - Store data as documents (e.g., JSON, BSON).
+   - Flexible schema, easy to scale.
+
+
+Syntax And Examples for Indexing, Aggregate functions, Views, Stored Procedures
+
+
+Certainly! Below are examples and syntax for indexing, aggregate functions, views, and stored procedures in the context of SQL, using a generic syntax that is generally applicable across various relational database systems.
+
+### 1. **Indexing:**
+
+#### Syntax:
+```sql
+-- Creating a single-column index
+CREATE INDEX index_name ON table_name (column_name);
+
+-- Creating a composite index
+CREATE INDEX index_name ON table_name (column1, column2);
+```
+
+#### Example:
+```sql
+-- Creating an index on the 'email' column in the 'users' table
+CREATE INDEX idx_email ON users (email);
+```
+
+### 2. **Aggregate Functions:**
+
+#### Syntax:
+```sql
+-- COUNT
+SELECT COUNT(column_name) FROM table_name;
+
+-- SUM
+SELECT SUM(column_name) FROM table_name;
+
+-- AVG
+SELECT AVG(column_name) FROM table_name;
+
+-- MIN
+SELECT MIN(column_name) FROM table_name;
+
+-- MAX
+SELECT MAX(column_name) FROM table_name;
+```
+
+#### Example:
+```sql
+-- Count the number of users in the 'users' table
+SELECT COUNT(user_id) FROM users;
+
+-- Calculate the average age of users in the 'users' table
+SELECT AVG(age) FROM users;
+```
+
+### 3. **Views:**
+
+#### Syntax:
+```sql
+-- Creating a view
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+#### Example:
+```sql
+-- Creating a view to show active users with their email and registration date
+CREATE VIEW active_users_view AS
+SELECT user_id, email, registration_date
+FROM users
+WHERE status = 'active';
+```
+
+### 4. **Stored Procedures:**
+
+#### Syntax:
+```sql
+-- Creating a stored procedure
+CREATE PROCEDURE procedure_name
+    (IN parameter1 data_type, IN parameter2 data_type, ...)
+BEGIN
+    -- SQL statements
+END;
+```
+
+#### Example:
+```sql
+-- Creating a stored procedure to insert a new user
+DELIMITER //
+CREATE PROCEDURE insert_user_procedure
+    (IN new_username VARCHAR(255), IN new_email VARCHAR(255))
+BEGIN
+    INSERT INTO users (username, email) VALUES (new_username, new_email);
+END;
+//
+DELIMITER ;
+```
+
